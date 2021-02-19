@@ -1,0 +1,56 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+i{
+    color: #ffca08;
+    /* Start color when not clicked */
+}
+
+</style>
+
+@* ViewBag.AllChefs *@
+@using System;
+@using System.Collections.Generic;
+@{
+    var today = DateTime.Today;
+}
+<div class="text-center">
+    <h1 class="display-4">Chefs and Dishes</h1>
+    <h3 class="mt-5 text-left">Check out our Dishes!</h1>
+</div>
+<div style="height: 30rem; overflow: auto;">
+
+<div class="container mt-3 p-3">
+    <table class="table">
+    <thead class="thead-light">
+    <tr>
+        <th scope="col">Dish Name</th>
+        <th scope="col">Chef</th>
+        <th scope="col">Stars</th>
+        <th scope="col">Calories</th>
+        <th scope="col">Description</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in ViewBag.AllDishes)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.ChefName.Name</td>
+            <td>
+                @for(var i = 0; i < @item.Tastiness; i++){
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                }
+            </td>
+            <td>@item.Calories</td>
+            <td>@item.Description</td>
+        </tr>
+    }    
+    </tbody>
+</table>
+</div>
+
+</div>
