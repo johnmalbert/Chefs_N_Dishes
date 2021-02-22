@@ -22,8 +22,6 @@ namespace ChefsNDishes.Controllers
         public IActionResult Index()
         {
             ViewBag.AllChefs = _context.Chefs.Include(c => c.CreatedDishes);
-            var firstChef = _context.Chefs.First(c=>c.ChefId == 1);
-            // Console.WriteLine(firstChef.CreatedDishes.Count);            
             return View();
         }
 
@@ -66,6 +64,7 @@ namespace ChefsNDishes.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Dishes");
             }
+            ViewBag.AllChefs = _context.Chefs.Include(c => c.CreatedDishes);
             return View("AddDish");
         }
 
